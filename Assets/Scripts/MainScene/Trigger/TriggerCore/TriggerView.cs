@@ -2,20 +2,31 @@ using UnityEngine;
 
 namespace MainScene.Trigger.TriggerCore
 {
-    public  abstract class TriggerView<T> : MonoBehaviour where T: TriggerModel
+    public abstract class TriggerView : MonoBehaviour
     {
-        [SerializeField] private T m_viewModel = default(T);
-        //private TriggerController<T> m_controller = null;
-        
-        public virtual void Start(T triggerController)
-        {
-          //  m_controller = new TriggerController<T>(m_viewModel);
-        }
 
+        protected IController Controller
+        {
+            get
+            {
+                if (controller == null)
+                {
+                    controller = CreateController();
+                    OnControllerCreate(controller);
+                }
+
+                return controller;
+            }
+        }
+        private IController controller;
         public virtual void OnTriggerEnter(Collider other)
         {
-        //    if(other == m_viewModel.Сollider) 
-                //m_controller.TriggerEnter();
+            Controller.TriggerEnter();
         }
+        protected abstract IController CreateController();
+        protected virtual void OnControllerCreate(IController controller)
+        {
+        }
+
     }
 }

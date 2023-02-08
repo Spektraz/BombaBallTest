@@ -1,19 +1,16 @@
+using MainScene.Trigger.TriggerCore;
 using UnityEngine;
 
 namespace MainScene.Trigger.Finish
 {
-    public class WinGameView : MonoBehaviour
+    public class WinGameView : TriggerView
     {
         [SerializeField] private WinGameModel m_viewModel = null;
-        private WinGameController m_controller = null;
-        private void Start()
+        public override void OnTriggerEnter(Collider other)
         {
-            m_controller = new WinGameController();
+            if(other == m_viewModel.Сollider) 
+                base.OnTriggerEnter(other);
         }
-        public void OnTriggerEnter(Collider other)
-        {
-            if(other == m_viewModel.Сollider)
-              m_controller.TriggerEnter();
-        }
+        protected override IController CreateController() => new WinGameController(this);
     }
 }

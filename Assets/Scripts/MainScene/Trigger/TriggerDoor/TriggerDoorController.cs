@@ -3,24 +3,18 @@ using MainScene.Trigger.TriggerCore;
 
 namespace MainScene.Trigger.TriggerDoor
 {
-    public class TriggerDoorController //: TriggerController<TriggerDoorModel>
+    public class TriggerDoorController : TriggerController<TriggerDoorView>
     {
-        private TriggerDoorModel m_viewModel = null;
-        public TriggerDoorController(TriggerDoorModel viewModel)
+         private TriggerDoorModel m_viewModel = null;
+         public TriggerDoorController(TriggerDoorView view, TriggerDoorModel triggerDoorModel) : base(view)
         {
-            m_viewModel = viewModel;
+            m_viewModel = triggerDoorModel;
         }
-        public void TriggerEnter()
+
+        public override void TriggerEnter()
         {
             m_viewModel.AnimatorDoor.SetTrigger(GlobalConst.OpenDoorAnimator);
         }
-        // public override void TriggerEnter()
-        // {
-        //     m_viewModel.AnimatorDoor.SetTrigger(GlobalConst.OpenDoorAnimator);
-        // }
-        // public TriggerDoorController(TriggerDoorModel viewModel) : base(viewModel)
-        // {
-        // }
     }
 }
 

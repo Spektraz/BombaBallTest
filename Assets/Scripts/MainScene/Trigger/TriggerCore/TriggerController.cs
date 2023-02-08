@@ -1,16 +1,17 @@
 namespace MainScene.Trigger.TriggerCore
 {
-    public class TriggerController<T>  where T : TriggerView<TriggerModel>
+    public abstract class TriggerController<T> : IController where T : TriggerView
     {
-        public T m_viewModel = default(T);
-        public TriggerController(T viewModel)
-        {
-            m_viewModel = viewModel;
-        }
+        protected T View { get; }
 
-        public virtual void TriggerEnter()
+        public TriggerController(T view)
         {
-            
+            this.View = view;
         }
+        public abstract void TriggerEnter();
+    }
+    public interface IController
+    {
+        void TriggerEnter();
     }
 }
