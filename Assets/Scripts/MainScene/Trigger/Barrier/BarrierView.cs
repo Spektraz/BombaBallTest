@@ -9,7 +9,6 @@ namespace MainScene.Trigger.Barrier
         private void Start()
         {
             m_controller = new BarrierController( this);
-            m_controller.Initialize();
         }
 
         private void Update()
@@ -30,11 +29,6 @@ namespace MainScene.Trigger.Barrier
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                 m_controller.TriggerBomb();
             }
-        }
-
-        private void OnDestroy()
-        {
-            m_controller.Dispose();
         }
     }
 }

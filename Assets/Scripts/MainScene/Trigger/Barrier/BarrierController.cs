@@ -13,14 +13,6 @@ namespace MainScene.Trigger.Barrier
             m_view = barrierView;
             m_timer = GlobalConst.LifeTree;
         }
-        public void Initialize()
-        {
-            InitializeEvents();
-        }
-        private void InitializeEvents()
-        {
-            ApplicationContainer.Instance.EventHolder.OnDeleteTreeEvent += DeleteTree;
-        }
         public void TriggerEnter()
         {
             ApplicationContainer.Instance.EventHolder.OnFinishGame(GlobalConst.LooseGame);
@@ -38,14 +30,6 @@ namespace MainScene.Trigger.Barrier
             if (!(m_timer < 0)) return;
             m_isBoom = false;
             m_view.DestroyObject();
-        }
-        private void DisposeEvents()
-        {
-            ApplicationContainer.Instance.EventHolder.OnDeleteTreeEvent -= DeleteTree;
-        }
-        public void Dispose()
-        {
-            DisposeEvents();
         }
     }
 }

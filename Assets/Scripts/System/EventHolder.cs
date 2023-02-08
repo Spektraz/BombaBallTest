@@ -26,11 +26,5 @@ namespace System
             var temp = OnBoomEvent;
             temp?.Invoke(state);
         }
-        public Action OnDeleteTreeEvent;
-        public void OnDeleteTree()
-        {
-            var temp = OnDeleteTreeEvent;
-            temp?.Invoke();
-        }
     }
 }

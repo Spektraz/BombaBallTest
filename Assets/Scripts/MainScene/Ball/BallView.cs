@@ -28,12 +28,12 @@ namespace MainScene.Ball
             if (Input.touchCount > 0)
             {
                 m_controller.CreateBomb();
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    m_controller.ShootBomb();
+                }
             }
-
-            // else if (Input.touchCount == 0)
-            // {
-            //     m_controller.FinishCreateBomb();
-            // }
 #if UNITY_EDITOR
             if (Input.GetKey(KeyCode.Mouse0))
             {
